@@ -1,0 +1,89 @@
+﻿<Page x:Class="Vexis.Client.MVVM.Pages.GamesLibrary"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:controls="clr-namespace:Vexis.Client.MVVM.Controls"
+      xmlns:viewmodel="clr-namespace:Vexis.Client.MVVM.ViewModels"
+      mc:Ignorable="d"
+      Foreground="{DynamicResource MaterialDesignBody}"
+      FontSize="15"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto"
+      Background="{DynamicResource MaterialDesignPaper}"
+      FontFamily="{DynamicResource MaterialDesignFont}"
+      d:DesignHeight="450" d:DesignWidth="800" d:DataContext="{d:DesignInstance viewmodel:GamesLibraryViewModel}"
+      Title="GamesLibrary">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Row="0" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBox
+                Grid.Column="0"
+                Text="{Binding Search}"
+                materialDesign:HintAssist.Hint="Search"
+                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                VerticalAlignment="Center" />
+            <materialDesign:PopupBox x:Name="PopupBox" Grid.Column="1" HorizontalAlignment="Right"
+                                     PlacementMode="BottomAndAlignCentres"
+                                     PopupMode="Click">
+                <materialDesign:PopupBox.ToggleContent>
+                    <materialDesign:PackIcon Foreground="{DynamicResource MaterialDesignBody}"
+                                             Width="20" Height="20"
+                                             Kind="PlusBoxOutline" />
+                </materialDesign:PopupBox.ToggleContent>
+                <StackPanel>
+                    <Button VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15"
+                            Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                            Style="{DynamicResource MaterialDesignFlatButton}">
+                        <DockPanel>
+                            <materialDesign:PackIcon Kind="OpenInApp" VerticalAlignment="Center"
+                                                     HorizontalAlignment="Center" />
+                            <TextBlock VerticalAlignment="center">Add a Non-Vexis Game</TextBlock>
+                        </DockPanel>
+                        <Button.CommandParameter>
+                            <controls:AddGame Height="200" Width="300" />
+                        </Button.CommandParameter>
+                    </Button>
+                    <Button VerticalAlignment="Center" HorizontalAlignment="Center"
+                            FontSize="15"
+                            Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                            Style="{DynamicResource MaterialDesignFlatButton}">
+                        <DockPanel>
+                            <materialDesign:PackIcon Kind="KeyVariant" VerticalAlignment="Center"
+                                                     HorizontalAlignment="Center" />
+                            <TextBlock VerticalAlignment="center">Activate a Game on Vexis</TextBlock>
+                        </DockPanel>
+                        <Button.CommandParameter>
+                            <controls:GameActivation Height="150" Width="300" />
+                        </Button.CommandParameter>
+                    </Button>
+                </StackPanel>
+            </materialDesign:PopupBox>
+        </Grid>
+
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                      materialDesign:ScrollViewerAssist.IsAutoHideEnabled="True">
+            <ItemsControl ItemsSource="{Binding Games, UpdateSourceTrigger=PropertyChanged}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel HorizontalAlignment="Center" IsItemsHost="True" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <controls:GameTile DataContext="{Binding Path=.}" MaxHeight="250" MaxWidth="200" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</Page>

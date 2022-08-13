@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vexis.Client", "Vexis.Client\Vexis.Client.csproj", "{DC6D4575-BC0C-4087-90A1-D35F8A11A6FD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vexis.API.Data", "Vexis.API.Data\Vexis.API.Data.csproj", "{9DBDA243-5F8E-4D38-92A4-FF0E9D2DB639}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vexis.API", "Vexis.API\Vexis.API.csproj", "{4921CD84-C9CB-490F-BFD3-C33D663A4FED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vexis.Database", "Vexis.Database\Vexis.Database.csproj", "{0AB3396A-30A4-4B99-BAEF-4D6CF699569A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vexis.Security", "Vexis.Security\Vexis.Security.csproj", "{EF605D54-A363-4047-817F-22088344A180}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC6D4575-BC0C-4087-90A1-D35F8A11A6FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC6D4575-BC0C-4087-90A1-D35F8A11A6FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC6D4575-BC0C-4087-90A1-D35F8A11A6FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC6D4575-BC0C-4087-90A1-D35F8A11A6FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DBDA243-5F8E-4D38-92A4-FF0E9D2DB639}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DBDA243-5F8E-4D38-92A4-FF0E9D2DB639}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DBDA243-5F8E-4D38-92A4-FF0E9D2DB639}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DBDA243-5F8E-4D38-92A4-FF0E9D2DB639}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4921CD84-C9CB-490F-BFD3-C33D663A4FED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4921CD84-C9CB-490F-BFD3-C33D663A4FED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4921CD84-C9CB-490F-BFD3-C33D663A4FED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4921CD84-C9CB-490F-BFD3-C33D663A4FED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AB3396A-30A4-4B99-BAEF-4D6CF699569A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AB3396A-30A4-4B99-BAEF-4D6CF699569A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AB3396A-30A4-4B99-BAEF-4D6CF699569A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AB3396A-30A4-4B99-BAEF-4D6CF699569A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF605D54-A363-4047-817F-22088344A180}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF605D54-A363-4047-817F-22088344A180}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF605D54-A363-4047-817F-22088344A180}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF605D54-A363-4047-817F-22088344A180}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DB4F74D4-2047-4EAD-BC06-68A00AD4A43A}
+	EndGlobalSection
+EndGlobal

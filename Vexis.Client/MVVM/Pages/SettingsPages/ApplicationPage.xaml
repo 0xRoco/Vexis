@@ -1,0 +1,62 @@
+﻿<Page x:Class="Vexis.Client.MVVM.Pages.SettingsPages.ApplicationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      Foreground="{DynamicResource MaterialDesignDarkForeground}"
+      Background="{DynamicResource MaterialDesignDarkBackground}"     
+      mc:Ignorable="d"
+      Title="ApplicationPage" Loaded="ApplicationPage_OnLoaded">
+    <Grid>
+        <!-- General -->
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal"  Margin="5">
+                <Label Content="Language: "/>
+                <ComboBox
+                    SelectedIndex="{Binding Language, UpdateSourceTrigger=PropertyChanged}"
+                    materialDesign:HintAssist.Hint="NULL">
+                    <ComboBoxItem>
+                        English (US)
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        Français
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        Español
+                    </ComboBoxItem>
+                </ComboBox>            
+            </StackPanel>
+            <StackPanel  Orientation="Horizontal" Margin="5">
+                <Label Content="On game launch: "/>
+                <ComboBox x:Name="OnGameLaunchComboBox"
+                          SelectedItem="{Binding OnGameLaunchAction, UpdateSourceTrigger=PropertyChanged}"
+                          materialDesign:HintAssist.Hint="NULL" SelectionChanged="OnGameLaunchCb_OnSelectionChanged" 
+                          IsSynchronizedWithCurrentItem="True" >
+                    
+                </ComboBox>            
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="When clicking X (Close window): "/>
+                <ComboBox x:Name="OnWindowCloseComboBox"
+                    SelectedItem="{Binding OnWindowCloseAction, UpdateSourceTrigger=PropertyChanged}"
+                    materialDesign:HintAssist.Hint="NULL">
+                </ComboBox>            
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="When i start my computer: "/>
+                <ComboBox x:Name="OnSystemStartupComboBox" MaxWidth="200"
+                    SelectedItem="{Binding OnSystemStartupAction,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    materialDesign:HintAssist.Hint="NULL" IsSynchronizedWithCurrentItem="True">
+                </ComboBox>            
+            </StackPanel>
+            <Button Click="ButtonBase_OnClick"
+                HorizontalAlignment="Left"
+                Content="Clear saved login credentials" FontSize="12" Width="200" Height="30"
+                Style="{StaticResource MaterialDesignOutlinedButton}" Margin="5" />
+        </StackPanel>
+        
+       
+        
+    </Grid>
+</Page>

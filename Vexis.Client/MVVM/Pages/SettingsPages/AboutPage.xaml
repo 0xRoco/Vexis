@@ -1,0 +1,19 @@
+﻿<Page x:Class="Vexis.Client.MVVM.Pages.SettingsPages.AboutPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      Foreground="{DynamicResource MaterialDesignDarkForeground}"
+      Background="{DynamicResource MaterialDesignDarkBackground}"     
+      mc:Ignorable="d"
+      Title="AboutPage">
+    <Grid>
+        <TextBlock>
+            <TextBlock Text="Vyneta:" FontWeight="Bold" /> <LineBreak/>
+            <TextBlock Text="{Binding Path=AppVersion, StringFormat=App Version: {0}, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/> <LineBreak/>
+            <TextBlock Text="Third Party Libraries:" FontWeight="Bold" /> <LineBreak/>
+            <TextBlock Text="MaterialDesignInXAML" /><LineBreak/>
+        </TextBlock>
+    </Grid>
+</Page>

@@ -1,0 +1,108 @@
+﻿<Window x:Class="Vexis.Client.MVVM.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodel="clr-namespace:Vexis.Client.MVVM.ViewModels"
+        mc:Ignorable="d"
+        Foreground="{DynamicResource MaterialDesignBody}"
+        FontWeight="Regular"
+        FontSize="15"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Loaded="Window_Loaded"
+        Title="MainWindow" Height="450" Width="800" d:DataContext="{d:DesignInstance viewmodel:MainViewModel}">
+    <materialDesign:DialogHost x:Name="DialogHost" CloseOnClickAway="True">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <Grid Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="StoreButton" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"
+                        Content="{Binding AppClient.AppName, FallbackValue=AppName, UpdateSourceTrigger=PropertyChanged}"
+                        FontSize="18"
+                        Style="{StaticResource MaterialDesignFlatButton}" Click="StoreButton_Click" />
+
+                <Button x:Name="LibraryButton" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                        Content="Library"
+                        FontSize="15"
+                        Style="{DynamicResource MaterialDesignFlatButton}" Click="LibraryButton_Click" />
+
+                <Button x:Name="CommunityButton" Grid.Column="2" VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Content="Community"
+                        FontSize="15"
+                        Style="{DynamicResource MaterialDesignFlatButton}" />
+
+                <Grid Column="3" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:Chip
+                            Content="{Binding User.Username, FallbackValue=$User.Username, UpdateSourceTrigger=PropertyChanged}"
+                            Background="Transparent">
+                            <materialDesign:Chip.Icon>
+                                <Image Source="https://picsum.photos/200" />
+                            </materialDesign:Chip.Icon>
+                        </materialDesign:Chip>
+                        <materialDesign:PopupBox PlacementMode="BottomAndAlignCentres" PopupMode="Click">
+                            <StackPanel>
+                                <Button VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15"
+                                        Visibility="Collapsed"
+                                        Style="{DynamicResource MaterialDesignFlatButton}">
+                                    <DockPanel>
+                                        <materialDesign:PackIcon Kind="AccountBox" VerticalAlignment="Center"
+                                                                 HorizontalAlignment="Center" />
+                                        <TextBlock VerticalAlignment="center">My Account</TextBlock>
+                                    </DockPanel>
+                                </Button>
+                                <Button Name="SettingsButton" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                        FontSize="15"
+                                        Style="{DynamicResource MaterialDesignFlatButton}">
+                                    <DockPanel>
+                                        <materialDesign:PackIcon Kind="Cog" VerticalAlignment="Center"
+                                                                 HorizontalAlignment="Center" />
+                                        <TextBlock VerticalAlignment="center">Settings</TextBlock>
+                                    </DockPanel>
+                                </Button>
+                                <Button VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15"
+                                        Style="{DynamicResource MaterialDesignFlatButton}">
+                                    <DockPanel>
+                                        <materialDesign:PackIcon Kind="Logout" VerticalAlignment="Center"
+                                                                 HorizontalAlignment="Center" />
+                                        <TextBlock VerticalAlignment="center">Logout</TextBlock>
+                                    </DockPanel>
+                                </Button>
+                                <Button VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15"
+                                        Style="{DynamicResource MaterialDesignFlatButton}">
+                                    <DockPanel>
+                                        <materialDesign:PackIcon Kind="Bug" VerticalAlignment="Center"
+                                                                 HorizontalAlignment="Center" />
+                                        <TextBlock VerticalAlignment="center">DEBUG</TextBlock>
+                                    </DockPanel>
+                                </Button>
+                            </StackPanel>
+                        </materialDesign:PopupBox>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+            <!-- Content -->
+            <Grid Row="1">
+                <Frame x:Name="iFrame" NavigationUIVisibility="Hidden" />
+            </Grid>
+        </Grid>
+
+    </materialDesign:DialogHost>
+</Window>

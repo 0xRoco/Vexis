@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="Vexis.Client.MVVM.Controls.GameTile"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:viewmodel="clr-namespace:Vexis.Client.MVVM.ViewModels"
+             mc:Ignorable="d"
+             Loaded="GameTile_OnLoaded"
+             Foreground="{DynamicResource MaterialDesignBody}"
+             FontSize="15"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             d:DesignHeight="250" d:DesignWidth="200" d:DataContext="{d:DesignInstance viewmodel:GameTileViewModel}">
+    <UserControl.Resources>
+    </UserControl.Resources>
+
+    <materialDesign:Card Background="{DynamicResource MaterialDesignPaper}"
+                         materialDesign:ShadowAssist.ShadowDepth="Depth2" Margin="5" Padding="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="{Binding Game.Name, FallbackValue=$Game.Name}" VerticalAlignment="Top"
+                       HorizontalAlignment="Center" />
+
+            <Grid Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                           TextAlignment="Center">
+                    <Label Content="Last Played" FontWeight="Bold" />
+                    <LineBreak />
+                    <Label
+                        Content="{Binding Game.LastPlayed, StringFormat='yyyy-MM-dd', FallbackValue=$Game.LastPlayer}"
+                        FontSize="10" />
+                </TextBlock>
+                <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                           TextAlignment="Center">
+                    <Label Content="Playtime" FontWeight="Bold" />
+                    <LineBreak />
+                    <Label Content="{Binding Game.Playtime,StringFormat=hh\\:mm, FallbackValue=$Game.Playtime}"
+                           FontSize="10" />
+                </TextBlock>
+            </Grid>
+            <Grid Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="55" />
+                    <!-- <ColumnDefinition Width="55"  /> -->
+                </Grid.ColumnDefinitions>
+                <Button x:Name="PlayButton" Click="PlayButton_OnClick" Margin="5"
+                        Style="{DynamicResource MaterialDesignRaisedButton}"
+                        Background="#FF23B548" Foreground="#FFFFFFFF" BorderThickness="0">
+                    <DockPanel>
+                        <materialDesign:PackIcon
+                            Kind="{Binding Game.GameLauncherIcon, FallbackValue=Play}"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center" />
+                        <TextBlock Text="Play" VerticalAlignment="center" TextAlignment="Center" />
+
+                    </DockPanel>
+                </Button>
+                <Button Grid.Column="1" Margin="5"
+                        Style="{DynamicResource MaterialDesignRaisedButton}"
+                        Background="#FF23B548" Foreground="#FFFFFFFF" BorderThickness="0">
+                    <DockPanel>
+                        <materialDesign:PackIcon Kind="Settings" VerticalAlignment="Center"
+                                                 HorizontalAlignment="Center" />
+                    </DockPanel>
+                </Button>
+                <Button Grid.Column="2" Margin="5" Visibility="Hidden"
+                        Style="{DynamicResource MaterialDesignRaisedButton}"
+                        Background="#FF23B548" Foreground="#FFFFFFFF" BorderThickness="0">
+                    <DockPanel>
+                        <materialDesign:PackIcon Kind="FavouriteOutline" VerticalAlignment="Center"
+                                                 HorizontalAlignment="Center" />
+                    </DockPanel>
+                </Button>
+            </Grid>
+
+        </Grid>
+    </materialDesign:Card>
+</UserControl>

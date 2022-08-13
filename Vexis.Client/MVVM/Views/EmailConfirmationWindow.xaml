@@ -1,0 +1,51 @@
+<Window x:Class="Vexis.Client.MVVM.Views.EmailConfirmationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Foreground="{DynamicResource MaterialDesignDarkForeground}"
+        Background="{DynamicResource MaterialDesignDarkBackground}"
+        WindowStyle="ToolWindow"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Title="EmailConfirmationModal" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <materialDesign:PackIcon Kind="Email" Width="200" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Just one more step..." FontSize="30"
+                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Row="1" FontSize="20"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center">
+                <Run Text="Please verify your email so you can login."/> 
+                <LineBreak/>
+                <Run Text="A confirmation token was sent to:"/>
+                <LineBreak/>
+                <Run Text="{Binding Email}"/>
+            </TextBlock>
+            <TextBox Grid.Row="2" FontSize="15" Margin="10"
+                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                     VerticalAlignment="Center"
+                     materialDesign:HintAssist.Hint="Email confirmation token"
+                     Text="{Binding Token, UpdateSourceTrigger=PropertyChanged}"/>
+            
+            <Button Grid.Row="3" x:Name="VerifyButton" Click="VerifyButton_OnClick" FontSize="15" Margin="10"
+                    VerticalAlignment="Center" 
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    Content="Verify"/>
+            
+        </Grid>
+    </Grid>
+</Window>

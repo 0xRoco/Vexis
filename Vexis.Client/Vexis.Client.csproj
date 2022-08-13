@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <Nullable>enable</Nullable>
+        <UseWPF>true</UseWPF>
+        <TargetFramework>net6.0-windows</TargetFramework>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Folder Include="Extensions\" />
+        <Folder Include="Interfaces\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="badLogg" Version="1.0.1" />
+      <PackageReference Include="MaterialDesignColors" Version="2.0.6" />
+      <PackageReference Include="MaterialDesignThemes" Version="4.5.0" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+      <PackageReference Include="RestSharp" Version="108.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Vexis.API.Data\Vexis.API.Data.csproj" />
+      <ProjectReference Include="..\Vexis.Security\Vexis.Security.csproj" />
+    </ItemGroup>
+</Project>

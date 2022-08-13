@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="Vexis.Client.MVVM.Controls.AddGame"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:viewmodel="clr-namespace:Vexis.Client.MVVM.ViewModels"
+             mc:Ignorable="d"
+             Loaded="AddGame_OnLoaded"
+             Foreground="{DynamicResource MaterialDesignBody}"
+             FontSize="15"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             d:DesignHeight="200" d:DesignWidth="300" d:DataContext="{d:DesignInstance viewmodel:AddGameViewModel}"
+             Padding="2">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Row="0">
+            <TextBlock Text="Select a non-Vexis game that you would like to add to your library."
+                       TextWrapping="Wrap" />
+        </Grid>
+
+        <Grid Row="1" Margin="5" VerticalAlignment="Center">
+            <StackPanel>
+                <TextBlock Margin="5">
+                    <Label Content="Game: " />
+                    <Label Content="{Binding Game.Name, FallbackValue=$Game.Name}" />
+                </TextBlock>
+                <TextBox
+                    Text="{Binding Game.GameDirectory, FallbackValue=$Game.GameDirectory}"
+                    materialDesign:HintAssist.Hint="Location"
+                    materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                    materialDesign:TextFieldAssist.LeadingIcon="Folder"
+                    IsReadOnly="
+                    True" Margin="5" />
+
+            </StackPanel>
+        </Grid>
+
+        <Grid Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="BrowseButton" Click="BrowseButton_OnClick" Grid.Column="0" Content="Browse"
+                    Style="{DynamicResource MaterialDesignRaisedButton}"
+                    BorderThickness="0" Margin="5" />
+            <Button x:Name="AddButton" Click="AddButton_OnClick" Grid.Column="1" Content="Add"
+                    Style="{DynamicResource MaterialDesignRaisedButton}"
+                    BorderThickness="0" Margin="5" IsEnabled="False" />
+        </Grid>
+    </Grid>
+</UserControl>

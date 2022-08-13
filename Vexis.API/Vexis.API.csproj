@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+      <UserSecretsId>7c286ae1-7330-41ab-9e97-d90002fbecb1</UserSecretsId>
+  </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="badLogg" Version="1.0.1" />
+        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.1" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Vexis.API.Data\Vexis.API.Data.csproj" />
+        <ProjectReference Include="..\Vexis.Database\Vexis.Database.csproj" />
+        <ProjectReference Include="..\Vexis.Security\Vexis.Security.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Core" />
+    </ItemGroup>
+
+</Project>
