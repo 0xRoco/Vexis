@@ -16,12 +16,12 @@ namespace Vexis.Client.MVVM.Pages;
 public partial class LoginPage
 {
     private LogManager Logger { get; }
-    private LoginViewModel ViewModel { get; }
+    private LoginPageViewModel ViewModel { get; }
 
     public LoginPage()
     {
         InitializeComponent();
-        DataContext = ViewModel = new LoginViewModel();
+        DataContext = ViewModel = new LoginPageViewModel();
         Logger = LogManager.GetLogger();
     }
 

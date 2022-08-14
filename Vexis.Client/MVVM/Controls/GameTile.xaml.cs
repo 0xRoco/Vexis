@@ -8,7 +8,7 @@ namespace Vexis.Client.MVVM.Controls;
 
 public partial class GameTile : UserControl
 {
-    private GameTileViewModel _vm = new();
+    private GameTileViewModel ViewModel { get; set; } = new();
 
     public GameTile()
     {
@@ -17,12 +17,12 @@ public partial class GameTile : UserControl
 
     private void PlayButton_OnClick(object sender, RoutedEventArgs e)
     {
-        LogManager.GetLogger().Info(_vm.Game.ToString());
+        LogManager.GetLogger().Info(ViewModel.Game.ToString());
     }
 
     private void GameTile_OnLoaded(object sender, RoutedEventArgs e)
     {
-        _vm.Game = (Game) DataContext;
-        DataContext = _vm;
+        ViewModel.Game = (Game) DataContext;
+        DataContext = ViewModel;
     }
 }

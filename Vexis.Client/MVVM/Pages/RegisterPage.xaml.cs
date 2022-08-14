@@ -15,12 +15,12 @@ namespace Vexis.Client.MVVM.Pages;
 /// </summary>
 public partial class RegisterPage
 {
-    private RegisterViewModel ViewModel { get; }
+    private RegisterPageViewModel ViewModel { get; }
 
     public RegisterPage()
     {
         InitializeComponent();
-        DataContext = ViewModel = new RegisterViewModel();
+        DataContext = ViewModel = new RegisterPageViewModel();
     }
 
     private void PasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e)

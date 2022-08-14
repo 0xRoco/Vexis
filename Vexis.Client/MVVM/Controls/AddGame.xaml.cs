@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Controls;
 using badLogg.Core;
@@ -9,12 +10,13 @@ using Vexis.Client.Data;
 using Vexis.Client.Data.Enums;
 using Vexis.Client.MVVM.Pages;
 using Vexis.Client.MVVM.ViewModels;
+using Vexis.Client.MVVM.Views;
 
 namespace Vexis.Client.MVVM.Controls;
 
-public partial class AddGame : UserControl
+public partial class AddGame
 {
-    private AddGameViewModel _vm = new();
+    private AddGameViewModel ViewModel { get; set; } = new();
 
     public AddGame()
     {
@@ -23,8 +25,8 @@ public partial class AddGame : UserControl
 
     private void AddGame_OnLoaded(object sender, RoutedEventArgs e)
     {
-        _vm = new AddGameViewModel();
-        DataContext = _vm;
+        ViewModel = new AddGameViewModel();
+        DataContext = ViewModel;
         AddButton.IsEnabled = false;
     }
 
@@ -43,7 +45,8 @@ public partial class AddGame : UserControl
             };
             if (dialog.ShowDialog() == true)
             {
-                _vm.Game = new Game(0, dialog.SafeFileName, dialog.SafeFileName,
+                ViewModel.Game = new Game(RandomNumberGenerator.GetInt32(00000, 99999), dialog.SafeFileName,
+                    dialog.SafeFileName,
                     Path.GetDirectoryName(dialog.FileName)!);
                 AddButton.IsEnabled = true;
                 return;
@@ -62,9 +65,9 @@ public partial class AddGame : UserControl
     //This is probably the worst way to handle this but who cares?
     private async void AddButton_OnClick(object sender, RoutedEventArgs e)
     {
-        await GamesService.Instance.AddGame(_vm.Game);
+        await GamesService.Instance.AddCustomGame(ViewModel.Game);
         AddButton.IsEnabled = false;
-        _vm.Game = null;
-        await UiService.CloseCurrentDialogHost();
+        ViewModel.Game = null!;
+        await UiService.Instance.CloseCurrentDialogHost();
     }
 }

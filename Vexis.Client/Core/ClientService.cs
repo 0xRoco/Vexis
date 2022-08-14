@@ -1,6 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using badLogg.Core;
+using Newtonsoft.Json;
+using Vexis.API.Data;
 using Vexis.Client.Data;
 using Vexis.Client.Data.Enums;
 
@@ -8,11 +11,13 @@ namespace Vexis.Client.Core;
 
 internal sealed class ClientService : LazySingletonBase<ClientService>
 {
+    private string SettingsFilePath => Path.Combine(Environment.CurrentDirectory, "data/settings.json");
     private bool IsInitialized { get; set; }
     private CurrentUser CurrentUser { get; set; }
 
     private ApiService ApiService { get; set; } = null!;
     private AppClient Client { get; set; } = null!;
+    private ClientSettings Settings { get; set; } = null!;
     private LogManager Logger { get; } = LogManager.GetLogger();
 
     public async Task InitializeClient(AppClient client)
@@ -29,8 +34,7 @@ internal sealed class ClientService : LazySingletonBase<ClientService>
         if (!IsInitialized) await Task.CompletedTask;
         CurrentUser = new CurrentUser();
         await UiService.Instance.Initialize();
-        await GamesLibraryService.Instance.Initialize();
-        await GamesService.Instance.Initialize();
+
         await AuthService.Instance.Initialize();
 
         //ApiService = new ApiService("localhost"); //Do i even need this here?
@@ -76,5 +80,21 @@ internal sealed class ClientService : LazySingletonBase<ClientService>
     public bool IsUserReady()
     {
         return CurrentUser.State == CurrentUserState.LoggedIn && IsInitialized;
+    }
+
+    public async Task SaveClientSettings()
+    {
+        Settings = new ClientSettings
+        {
+            RunOnStartup = false,
+            IsUserAlreadyLoggedIn = false,
+            Username = CurrentUser.Username,
+            LoginToken = CurrentUser.LoginToken
+        };
+
+        if (!Directory.Exists(Path.GetDirectoryName(SettingsFilePath)))
+            Directory.CreateDirectory(Path.GetDirectoryName(SettingsFilePath)!);
+        var settings = JsonConvert.SerializeObject(Settings, Formatting.Indented);
+        await File.WriteAllTextAsync(SettingsFilePath, settings);
     }
 }

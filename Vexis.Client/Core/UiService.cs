@@ -22,28 +22,35 @@ internal sealed class UiService : LazySingletonBase<UiService>
         await Task.CompletedTask;
     }
 
-    public static async Task AddGameTile(Game game)
+    public async Task AddGameTile(Game game)
     {
         if (await WindowsService.Instance.GetWindowAsync("MainWindow") is not MainWindow mainWindow)
         {
-            LogManager.GetLogger().Error("MainWindow is null");
+            Logger.Error("MainWindow is null");
             return;
         }
 
-        if (mainWindow.iFrame.Content is not GamesLibrary lib)
+        mainWindow.GetGamesLibrary().ViewModel.Games.Add(game);
+    }
+
+    public async Task<T?> GetViewModel<T>(string windowName)
+    {
+        var window = await WindowsService.Instance.GetWindowAsync(windowName);
+        if (window != null)
         {
-            LogManager.GetLogger().Error("Could not find GamesLibrary in MainWindow");
-            return;
+            var viewModel = (T) window.DataContext;
+            if (viewModel != null) return viewModel;
         }
 
-        lib._vm.Games.Add(game);
+        Logger.Warn($"Could not find window or viewmodel for {windowName} - maybe it's not loaded yet?");
+        return default;
     }
 
 
     [Obsolete("For testing - remove later")]
-    public static async Task CloseCurrentDialogHost()
+    public async Task CloseCurrentDialogHost()
     {
-        LogManager.GetLogger().Debug("Closing dialog host");
+        Logger.Debug("Closing dialog host");
 
         if (await WindowsService.Instance.GetWindowAsync("MainWindow") is not MainWindow mainWindow)
         {

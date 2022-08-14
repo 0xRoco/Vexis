@@ -18,8 +18,9 @@ public class Game
     public DateTime LastPlayed { get; set; } = DateTime.MinValue;
     public TimeSpan Playtime { get; set; } = TimeSpan.Zero;
 
-    public CustomGameLauncher GameLauncher { get; set; }
     public bool IsCustomGame { get; set; }
+
+    public CustomGameLauncher GameLauncher { get; set; }
 
     public string GameLauncherIcon => GetGameLauncherIcon();
 
@@ -35,8 +36,8 @@ public class Game
         Name = name;
         GameExecutable = gameExecutable;
         GameDirectory = gameDirectory;
-        LaunchArgs = launchArgs;
         IsCustomGame = isCustomGame;
+        LaunchArgs = launchArgs;
         GameLauncher = gameLauncher;
     }
 

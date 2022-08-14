@@ -7,7 +7,7 @@ namespace Vexis.Client.MVVM.Controls;
 
 public partial class GameActivation : UserControl
 {
-    private GameActivationViewModel _vm = new();
+    private GameActivationViewModel ViewModel { get; set; } = new();
 
     public GameActivation()
     {
@@ -16,13 +16,13 @@ public partial class GameActivation : UserControl
 
     private void GameActivation_OnLoaded(object sender, RoutedEventArgs e)
     {
-        _vm = new GameActivationViewModel();
-        DataContext = _vm;
+        ViewModel = new GameActivationViewModel();
+        DataContext = ViewModel;
     }
 
     private void ActivateButton_OnClick(object sender, RoutedEventArgs e)
     {
-        LogManager.GetLogger().Debug($"Activating game with code {_vm.GameCode}");
-        _vm.GameCode = string.Empty;
+        LogManager.GetLogger().Debug($"Activating game with code {ViewModel.GameCode}");
+        ViewModel.GameCode = string.Empty;
     }
 }

@@ -5,7 +5,7 @@ using Vexis.Client.MVVM.Models;
 
 namespace Vexis.Client.MVVM.ViewModels;
 
-internal class MainViewModel : ViewModelBase<MainModel>
+internal class MainWindowViewModel : ViewModelBase<MainWindowModel>
 {
     public CurrentUser User
     {

@@ -4,8 +4,18 @@ using Vexis.Client.MVVM.Models;
 
 namespace Vexis.Client.MVVM.ViewModels;
 
-public class LoginViewModel : ViewModelBase<LoginModel>
+public class LoginPageViewModel : ViewModelBase<LoginPageModel>
 {
+    public string AppName
+    {
+        get => Model.AppName;
+        set
+        {
+            Model.AppName = value;
+            OnPropertyChanged(nameof(AppName));
+        }
+    }
+
     public string UsernameOrEmail
     {
         get => Model.UsernameOrEmail;
