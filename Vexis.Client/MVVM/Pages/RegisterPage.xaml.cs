@@ -38,7 +38,10 @@ public partial class RegisterPage
             Password = SecurityService.SecureStringToString(ViewModel.Password),
             Email = ViewModel.Email
         });
-        if (success) ResetFields();
+        if (!success) return;
+        ResetFields();
+        var authWindow = await WindowsService.Instance.GetWindowAsync(nameof(AuthWindow)) as AuthWindow;
+        authWindow?.MainFrame.Navigate(new Uri("MVVM/Pages/LoginPage.xaml", UriKind.Relative));
     }
 
     private void ResetFields()

@@ -32,7 +32,7 @@ public partial class MainWindow : Window
     private async void Window_Loaded(object sender, RoutedEventArgs e)
     {
         iFrame.Content = GamesLibrary;
-        ViewModel.User = ClientService.Instance.GetCurrentUser();
+        ViewModel.User = ClientService.Instance.CurrentUser;
         await GamesService.Instance.Initialize();
     }
 

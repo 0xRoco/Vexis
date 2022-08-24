@@ -5,7 +5,7 @@ namespace Vexis.Client.MVVM.Models;
 
 public class LoginPageModel
 {
-    public string AppName = ClientService.Instance.GetCurrentClient().AppName;
+    public string AppName = ClientService.Instance.Client.AppName;
     public string UsernameOrEmail { get; set; }
     public SecureString Password { get; set; }
 

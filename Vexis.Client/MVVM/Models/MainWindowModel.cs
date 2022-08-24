@@ -7,5 +7,5 @@ namespace Vexis.Client.MVVM.Models;
 internal class MainWindowModel
 {
     public CurrentUser User { get; set; }
-    public AppClient AppClient { get; set; } = ClientService.Instance.GetCurrentClient();
+    public AppClient AppClient { get; set; } = ClientService.Instance.Client;
 }

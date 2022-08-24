@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using badLogg.Core;
 using Vexis.API.Data;
 using Vexis.Client.Core;
+using Vexis.Client.Data;
 using Vexis.Client.MVVM.ViewModels;
 using Vexis.Client.MVVM.Views;
 using Vexis.Security;
@@ -45,9 +46,18 @@ public partial class LoginPage
             });
 
             if (string.IsNullOrEmpty(x)) return;
-            await WindowsService.Instance.HideWindowAsync(nameof(AuthWindow));
-            ClientService.Instance.GetCurrentUser().Username = ViewModel.UsernameOrEmail;
-            ClientService.Instance.GetCurrentUser().LoginToken = x;
+            await WindowsService.Instance.HideWindowAsync(nameof(AuthWindow), true);
+            ClientService.Instance.CurrentUser.Username = ViewModel.UsernameOrEmail;
+            ClientService.Instance.CurrentUser.LoginToken = x;
+            if (ViewModel.RememberMe)
+                await ClientService.Instance.UpdateSettings(new ClientSettings
+                {
+                    StartupAction = ClientService.Instance.Settings.StartupAction,
+                    GameLaunchAction = ClientService.Instance.Settings.GameLaunchAction,
+                    Username = ViewModel.UsernameOrEmail,
+                    LoginToken = x
+                });
+
             await WindowsService.Instance.CreateWindowAsync(nameof(InitializingWindow));
             await WindowsService.Instance.ShowWindowAsync(nameof(InitializingWindow));
         }

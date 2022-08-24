@@ -15,7 +15,7 @@ public sealed class AuthService : LazySingletonBase<AuthService>
 
     public async Task Initialize()
     {
-        ClientService.Instance.GetCurrentUser().State = CurrentUserState.None;
+        ClientService.Instance.CurrentUser.State = CurrentUserState.None;
         await Task.CompletedTask;
     }
 
@@ -23,22 +23,22 @@ public sealed class AuthService : LazySingletonBase<AuthService>
     {
         try
         {
-            ClientService.Instance.GetCurrentUser().State = CurrentUserState.PendingRegistration;
+            ClientService.Instance.CurrentUser.State = CurrentUserState.PendingRegistration;
             var response = await Api.RegisterAsync(model);
             if (response is {Success: true})
             {
-                ClientService.Instance.GetCurrentUser().State = CurrentUserState.Registered;
+                ClientService.Instance.CurrentUser.State = CurrentUserState.Registered;
                 return response is {Success: true};
             }
 
             Logger.Error($"Registration failed: {response.Message}");
-            ClientService.Instance.GetCurrentUser().State = CurrentUserState.Error;
+            ClientService.Instance.CurrentUser.State = CurrentUserState.Error;
             return false;
         }
         catch (Exception e)
         {
             Logger.Error($"Registration failed: {e.Message}");
-            ClientService.Instance.GetCurrentUser().State = CurrentUserState.Error;
+            ClientService.Instance.CurrentUser.State = CurrentUserState.Error;
             return false;
         }
     }
@@ -47,12 +47,11 @@ public sealed class AuthService : LazySingletonBase<AuthService>
     {
         try
         {
-            ClientService.Instance.GetCurrentUser().State = CurrentUserState.PendingLogin;
             var response = await Api.AuthAsync(model);
             if (response is not {Success: true})
             {
                 Logger.Error($"Auth failed : {response.Message}");
-                ClientService.Instance.GetCurrentUser().State = CurrentUserState.Error;
+                ClientService.Instance.CurrentUser.State = CurrentUserState.Error;
                 return null!;
             }
 
@@ -60,17 +59,18 @@ public sealed class AuthService : LazySingletonBase<AuthService>
             if (loginToken == null)
             {
                 Logger.Error($"Auth failed - no token received");
-                ClientService.Instance.GetCurrentUser().State = CurrentUserState.Error;
+                ClientService.Instance.CurrentUser.State = CurrentUserState.Error;
                 return null!;
             }
 
-            ClientService.Instance.GetCurrentUser().State = CurrentUserState.LoggedIn;
+            ClientService.Instance.CurrentUser.State = CurrentUserState.PendingLogin;
+
             return loginToken;
         }
         catch (Exception e)
         {
             Logger.Error($"Auth failed - {e.Message}");
-            ClientService.Instance.GetCurrentUser().State = CurrentUserState.Error;
+            ClientService.Instance.CurrentUser.State = CurrentUserState.Error;
             return null!;
         }
     }
@@ -93,6 +93,7 @@ public sealed class AuthService : LazySingletonBase<AuthService>
                 return null!;
             }
 
+            ClientService.Instance.CurrentUser.State = CurrentUserState.LoggedIn;
             return userModel;
         }
         catch (Exception e)

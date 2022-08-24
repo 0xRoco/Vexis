@@ -75,8 +75,8 @@ public sealed class WindowsService : LazySingletonBase<WindowsService>
                     break;
 
                 case true:
-                    Logger.Info($"Window {windowName} shown as dialog");
                     window?.ShowDialog();
+                    Logger.Info($"Window {windowName} shown as dialog");
                     break;
             }
         }

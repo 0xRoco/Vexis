@@ -1,11 +1,18 @@
-﻿using Vexis.API.Data;
+﻿using Vexis.Client.Data.Enums;
 
 namespace Vexis.Client.Data;
 
 internal class ClientSettings
 {
-    public bool RunOnStartup { get; set; }
-    public bool IsUserAlreadyLoggedIn { get; set; }
-    public string Username { get; set; }
-    public string LoginToken { get; set; }
+    public SystemStartupAction StartupAction { get; set; }
+    public OnGameLaunchAction GameLaunchAction { get; set; }
+    
+    public string Username { get; set; } = "";
+    public string LoginToken { get; set; } = "";
+
+    public void ClearLoginData()
+    {
+        Username = "";
+        LoginToken = "";
+    }
 }
