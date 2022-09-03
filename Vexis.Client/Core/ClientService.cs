@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Vexis.Client.Data;
 using Vexis.Client.Data.Enums;
 using Vexis.Client.MVVM.Views;
+using Vexis.Common;
 
 namespace Vexis.Client.Core;
 

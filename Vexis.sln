@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vexis.Database", "Vexis.Dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vexis.Security", "Vexis.Security\Vexis.Security.csproj", "{EF605D54-A363-4047-817F-22088344A180}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vexis.Common", "Vexis.Common\Vexis.Common.csproj", "{C9A41B42-30D6-427A-94CD-59CCE31A6600}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{EF605D54-A363-4047-817F-22088344A180}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF605D54-A363-4047-817F-22088344A180}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF605D54-A363-4047-817F-22088344A180}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9A41B42-30D6-427A-94CD-59CCE31A6600}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9A41B42-30D6-427A-94CD-59CCE31A6600}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9A41B42-30D6-427A-94CD-59CCE31A6600}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9A41B42-30D6-427A-94CD-59CCE31A6600}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

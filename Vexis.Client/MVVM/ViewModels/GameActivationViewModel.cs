@@ -1,8 +1,5 @@
-﻿using System.Threading.Tasks;
-using Vexis.Client.Core;
-using Vexis.Client.Data;
-using Vexis.Client.Data.Enums;
-using Vexis.Client.MVVM.Models;
+﻿using Vexis.Client.MVVM.Models;
+using Vexis.Common.WPF;
 
 namespace Vexis.Client.MVVM.ViewModels;
 

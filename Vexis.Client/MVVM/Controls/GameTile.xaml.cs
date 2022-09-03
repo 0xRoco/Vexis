@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using badLogg.Core;
+using Vexis.Client.Core;
 using Vexis.Client.Data;
 using Vexis.Client.MVVM.ViewModels;
 
@@ -15,9 +16,9 @@ public partial class GameTile : UserControl
         InitializeComponent();
     }
 
-    private void PlayButton_OnClick(object sender, RoutedEventArgs e)
+    private async void PlayButton_OnClick(object sender, RoutedEventArgs e)
     {
-        LogManager.GetLogger().Info(ViewModel.Game.ToString());
+       await GamesService.Instance.LaunchGame(ViewModel.Game);
     }
 
     private void GameTile_OnLoaded(object sender, RoutedEventArgs e)

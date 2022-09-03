@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using badLogg.Core;
+using Vexis.Common;
 
 namespace Vexis.Client.Core;
 

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Vexis.Client.Core;
+namespace Vexis.Common.WPF;
 
 public class ViewModelBase<T> : INotifyPropertyChanged where T : new()
 {

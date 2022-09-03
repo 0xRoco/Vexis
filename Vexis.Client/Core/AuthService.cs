@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using badLogg.Core;
 using Vexis.API.Data;
 using Vexis.Client.Data.Enums;
+using Vexis.Common;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Vexis.Client.Core;

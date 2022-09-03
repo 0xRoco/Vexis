@@ -4,6 +4,7 @@ using badLogg.Core;
 using Vexis.Client.Data;
 using Vexis.Client.MVVM.Pages;
 using Vexis.Client.MVVM.Views;
+using Vexis.Common;
 
 namespace Vexis.Client.Core;
 
