@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -148,19 +147,4 @@ internal sealed class GamesService : LazySingletonBase<GamesService>
         Logger.Debug($"{game.Name} (PID: {proc.Id}) exited ({proc.ExitCode})");
     }
 
-    /* 
-    private Task<Game?> UpdateGame(int gameId, Game game)
-    {
-        var g = Games.FirstOrDefault(x => x.Id == gameId);
-
-        var index = Games.IndexOf(g);
-        if (index != -1)
-        {
-            Games[index] = game;
-            Logger.Info($"Updated game");
-        }
-        
-        return Task.FromResult(g)!;
-    }
-    */
 }
