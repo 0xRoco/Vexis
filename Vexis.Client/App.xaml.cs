@@ -35,9 +35,12 @@ public partial class App
         Logger.Info($"{Logger.GetConfig().AppName} v{Assembly.GetExecutingAssembly().GetName().Version}");
 
         await ClientService.Instance.InitializeClient(new Data.AppClient("Vexis.Client", "v1.0.0"));
+    }
 
-        if (await WindowsService.Instance.CreateWindowAsync("AuthWindow"))
-            await WindowsService.Instance.ShowWindowAsync("AuthWindow",
-                true); // anything past this point will not be executed until the window is closed
+    protected override async void OnExit(ExitEventArgs e)
+    {
+        Logger.Info("Application exiting");
+        await ClientService.Instance.SaveClientSettings();
+        base.OnExit(e);
     }
 }

@@ -26,6 +26,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Vexis.API.Data\Vexis.API.Data.csproj" />
+      <ProjectReference Include="..\Vexis.Common\Vexis.Common.csproj" />
       <ProjectReference Include="..\Vexis.Security\Vexis.Security.csproj" />
     </ItemGroup>
 </Project>

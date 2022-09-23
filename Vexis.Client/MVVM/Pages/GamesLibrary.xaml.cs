@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
 using badLogg.Core;
+using Vexis.Client.Core;
 using Vexis.Client.Data;
 using Vexis.Client.MVVM.ViewModels;
 
@@ -12,17 +13,20 @@ namespace Vexis.Client.MVVM.Pages;
 public partial class GamesLibrary
 {
     private LogManager Logger { get; }
-
-    public GamesLibraryViewModel _vm = new();
+    public GamesLibraryViewModel ViewModel { get; set; } = new();
 
     public GamesLibrary()
     {
         InitializeComponent();
         Logger = LogManager.GetLogger();
-        DataContext = _vm;
+        DataContext = ViewModel;
     }
 
     private async void Button_Click(object sender, RoutedEventArgs e)
+    {
+    }
+
+    private async void GamesLibrary_OnLoaded(object sender, RoutedEventArgs e)
     {
     }
 }

@@ -1,6 +1,6 @@
-﻿using Vexis.Client.Core;
-using Vexis.Client.Data;
+﻿using Vexis.Client.Data;
 using Vexis.Client.MVVM.Models;
+using Vexis.Common.WPF;
 
 namespace Vexis.Client.MVVM.ViewModels;
 
@@ -12,7 +12,7 @@ public class AddGameViewModel : ViewModelBase<AddGameModel>
         set
         {
             Model.Game = value;
-            OnPropertyChanged(nameof(Game));
+            OnPropertyChanged();
         }
     }
 }

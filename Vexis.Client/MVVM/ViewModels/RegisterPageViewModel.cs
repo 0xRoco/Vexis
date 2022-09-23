@@ -1,18 +1,28 @@
 ﻿using System.Security;
-using Vexis.Client.Core;
 using Vexis.Client.MVVM.Models;
+using Vexis.Common.WPF;
 
 namespace Vexis.Client.MVVM.ViewModels;
 
-public class RegisterViewModel : ViewModelBase<RegisterModel>
+public class RegisterPageViewModel : ViewModelBase<RegisterPageModel>
 {
+    public string AppName
+    {
+        get => Model.AppName;
+        set
+        {
+            Model.AppName = value;
+            OnPropertyChanged();
+        }
+    }
+
     public string Username
     {
         get => Model.Username;
         set
         {
             Model.Username = value;
-            OnPropertyChanged(nameof(Username));
+            OnPropertyChanged();
         }
     }
 
@@ -22,7 +32,7 @@ public class RegisterViewModel : ViewModelBase<RegisterModel>
         set
         {
             Model.Email = value;
-            OnPropertyChanged(nameof(Email));
+            OnPropertyChanged();
         }
     }
 
@@ -32,7 +42,7 @@ public class RegisterViewModel : ViewModelBase<RegisterModel>
         set
         {
             Model.Password = value;
-            OnPropertyChanged(nameof(Password));
+            OnPropertyChanged();
         }
     }
 }

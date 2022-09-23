@@ -1,8 +1,10 @@
 using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Windows;
 using badLogg.Core;
 using Vexis.Client.Core;
+using Vexis.Client.Data;
 
 namespace Vexis.Client.MVVM.Views;
 
@@ -31,11 +33,18 @@ public partial class InitializingWindow
         if (!dataLoaded)
         {
             Logger.Error("Failed to load user data");
+            ClientService.Instance.Settings.ClearLoginData();
+            await WindowsService.Instance.HideWindowAsync(GetType().Name, true);
+            if (await WindowsService.Instance.CreateWindowAsync("AuthWindow"))
+                await WindowsService.Instance
+                    .ShowWindowAsync(
+                        "AuthWindow"); // anything past this point will not be executed until the window is closed
             return;
         }
 
         Logger.Info("User data loaded, loading dashboard");
-        await WindowsService.Instance.HideWindowAsync(GetType().Name);
+        await WindowsService.Instance.HideWindowAsync(GetType().Name, true);
+        await ClientService.Instance.SaveClientSettings();
         await WindowsService.Instance.CreateWindowAsync(nameof(MainWindow));
         await WindowsService.Instance.ShowWindowAsync(nameof(MainWindow));
     }

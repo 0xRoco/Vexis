@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Vexis.Client.Core;
+﻿namespace Vexis.Common;
 
 public abstract class LazySingletonBase<T> where T : class, new()
 {

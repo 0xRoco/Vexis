@@ -15,12 +15,12 @@ namespace Vexis.Client.MVVM.Pages;
 /// </summary>
 public partial class RegisterPage
 {
-    private RegisterViewModel ViewModel { get; }
+    private RegisterPageViewModel ViewModel { get; }
 
     public RegisterPage()
     {
         InitializeComponent();
-        DataContext = ViewModel = new RegisterViewModel();
+        DataContext = ViewModel = new RegisterPageViewModel();
     }
 
     private void PasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e)
@@ -38,7 +38,10 @@ public partial class RegisterPage
             Password = SecurityService.SecureStringToString(ViewModel.Password),
             Email = ViewModel.Email
         });
-        if (success) ResetFields();
+        if (!success) return;
+        ResetFields();
+        var authWindow = await WindowsService.Instance.GetWindowAsync(nameof(AuthWindow)) as AuthWindow;
+        authWindow?.MainFrame.Navigate(new Uri("MVVM/Pages/LoginPage.xaml", UriKind.Relative));
     }
 
     private void ResetFields()

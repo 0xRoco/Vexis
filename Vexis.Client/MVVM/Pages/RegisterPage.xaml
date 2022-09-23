@@ -9,7 +9,7 @@
       Foreground="{DynamicResource MaterialDesignDarkForeground}"
       Background="{DynamicResource MaterialDesignDarkBackground}"
       FontSize="15"
-      d:DesignHeight="450" d:DesignWidth="350" d:DataContext="{d:DesignInstance viewmodel:RegisterViewModel}"
+      d:DesignHeight="450" d:DesignWidth="350" d:DataContext="{d:DesignInstance viewmodel:RegisterPageViewModel}"
       Title="LoginPage">
     <Grid>
         <Grid.RowDefinitions>
@@ -20,7 +20,7 @@
         <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
                    Margin="35 0"
                    FontSize="30">
-            <Run Text="{Binding AppClient.AppName, FallbackValue=$AppName}" /><Run Text="Register" FontWeight="Bold" />
+            <Run Text="{Binding AppName, FallbackValue=$AppName}" /><Run Text="Register" FontWeight="Bold" />
         </TextBlock>
 
         <Grid Row="1" VerticalAlignment="Center" Margin="10 0">

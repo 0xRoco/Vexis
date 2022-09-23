@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using badLogg.Core;
+using Vexis.Common;
 
 namespace Vexis.Client.Core;
 
@@ -25,7 +26,7 @@ public sealed class WindowsService : LazySingletonBase<WindowsService>
         //E:\source\Vexis\Vexis.Client\MVVM\Views\AuthWindow.xaml
     }
 
-    public async Task<Window> GetWindowAsync(string windowName)
+    public async Task<Window?> GetWindowAsync(string windowName)
     {
         try
         {
@@ -66,16 +67,17 @@ public sealed class WindowsService : LazySingletonBase<WindowsService>
             }
 
             var window = await GetWindowAsync(windowName);
+
             switch (isDialog)
             {
                 case false:
-                    window.Show();
+                    window?.Show();
                     Logger.Info($"Window {windowName} shown");
                     break;
 
                 case true:
+                    window?.ShowDialog();
                     Logger.Info($"Window {windowName} shown as dialog");
-                    window.ShowDialog();
                     break;
             }
         }

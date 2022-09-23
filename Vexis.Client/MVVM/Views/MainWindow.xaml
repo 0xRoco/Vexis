@@ -6,6 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodel="clr-namespace:Vexis.Client.MVVM.ViewModels"
         mc:Ignorable="d"
+        Closing="MainWindow_OnClosing"
         Foreground="{DynamicResource MaterialDesignBody}"
         FontWeight="Regular"
         FontSize="15"
@@ -14,7 +15,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Loaded="Window_Loaded"
-        Title="MainWindow" Height="450" Width="800" d:DataContext="{d:DesignInstance viewmodel:MainViewModel}">
+        Title="MainWindow" Height="450" Width="800" d:DataContext="{d:DesignInstance viewmodel:MainWindowViewModel}">
     <materialDesign:DialogHost x:Name="DialogHost" CloseOnClickAway="True">
         <Grid>
             <Grid.RowDefinitions>

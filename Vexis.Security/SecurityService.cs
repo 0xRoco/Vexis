@@ -61,13 +61,11 @@ public static class SecurityService
         return Task.FromResult(token);
     }
 
-    public static Task<string> GenerateCode()
+    public static Task<string> GenerateCode(int length = 6)
     {
-        const int length = 6;
-        var random = new Random();
         const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         return Task.FromResult(new string(Enumerable.Repeat(chars, length)
-            .Select(s => s[random.Next(s.Length)]).ToArray()));
+            .Select(s => s[RandomNumberGenerator.GetInt32(s.Length)]).ToArray()));
     }
 
     public static Task<int> GenerateId()
