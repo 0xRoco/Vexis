@@ -54,8 +54,8 @@ public partial class LoginPage
                 {
                     StartupAction = ClientService.Instance.Settings.StartupAction,
                     GameLaunchAction = ClientService.Instance.Settings.GameLaunchAction,
-                    Username = ViewModel.UsernameOrEmail,
-                    LoginToken = x
+                    MasterApi = ClientService.Instance.Settings.MasterApi,
+                    LoginToken = $"{ViewModel.UsernameOrEmail}:{x}"
                 });
 
             await WindowsService.Instance.CreateWindowAsync(nameof(InitializingWindow));

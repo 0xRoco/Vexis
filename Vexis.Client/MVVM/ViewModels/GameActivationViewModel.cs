@@ -11,7 +11,7 @@ public class GameActivationViewModel : ViewModelBase<GameActivationModel>
         set
         {
             Model.GameCode = value;
-            OnPropertyChanged(nameof(GameCode));
+            OnPropertyChanged();
             OnPropertyChanged(nameof(IsCodeValid));
         }
     }

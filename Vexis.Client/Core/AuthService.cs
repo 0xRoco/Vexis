@@ -12,7 +12,7 @@ public sealed class AuthService : LazySingletonBase<AuthService>
 {
     private LogManager Logger { get; set; } = LogManager.GetLogger();
 
-    private ApiService Api { get; } = new("http://localhost:5000");
+    private ApiService Api { get; } = new($"{ClientService.Instance.Settings.MasterApi}:5000");
 
     public async Task Initialize()
     {

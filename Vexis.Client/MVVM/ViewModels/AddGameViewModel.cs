@@ -12,7 +12,7 @@ public class AddGameViewModel : ViewModelBase<AddGameModel>
         set
         {
             Model.Game = value;
-            OnPropertyChanged(nameof(Game));
+            OnPropertyChanged();
         }
     }
 }

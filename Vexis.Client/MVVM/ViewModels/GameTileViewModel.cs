@@ -12,7 +12,7 @@ public class GameTileViewModel : ViewModelBase<GameTileModel>
         set
         {
             Model.Game = value;
-            OnPropertyChanged(nameof(Game));
+            OnPropertyChanged();
         }
     }
 }

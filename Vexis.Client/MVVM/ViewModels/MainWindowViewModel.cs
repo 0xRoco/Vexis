@@ -1,6 +1,4 @@
-﻿using Vexis.API.Data;
-using Vexis.Client.Core;
-using Vexis.Client.Data;
+﻿using Vexis.Client.Data;
 using Vexis.Client.MVVM.Models;
 using Vexis.Common.WPF;
 
@@ -14,7 +12,7 @@ internal class MainWindowViewModel : ViewModelBase<MainWindowModel>
         set
         {
             Model.User = value;
-            OnPropertyChanged(nameof(User));
+            OnPropertyChanged();
         }
     }
 
@@ -24,7 +22,7 @@ internal class MainWindowViewModel : ViewModelBase<MainWindowModel>
         set
         {
             Model.AppClient = value;
-            OnPropertyChanged(nameof(AppClient));
+            OnPropertyChanged();
         }
     }
 }

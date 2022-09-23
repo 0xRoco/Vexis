@@ -1,5 +1,4 @@
 ﻿using System.Security;
-using Vexis.Client.Core;
 using Vexis.Client.MVVM.Models;
 using Vexis.Common.WPF;
 
@@ -13,7 +12,7 @@ public class LoginPageViewModel : ViewModelBase<LoginPageModel>
         set
         {
             Model.AppName = value;
-            OnPropertyChanged(nameof(AppName));
+            OnPropertyChanged();
         }
     }
 
@@ -23,7 +22,7 @@ public class LoginPageViewModel : ViewModelBase<LoginPageModel>
         set
         {
             Model.UsernameOrEmail = value;
-            OnPropertyChanged(nameof(UsernameOrEmail));
+            OnPropertyChanged();
         }
     }
 
@@ -33,7 +32,7 @@ public class LoginPageViewModel : ViewModelBase<LoginPageModel>
         set
         {
             Model.Password = value;
-            OnPropertyChanged(nameof(Password));
+            OnPropertyChanged();
         }
     }
 
@@ -43,7 +42,7 @@ public class LoginPageViewModel : ViewModelBase<LoginPageModel>
         set
         {
             Model.RememberMe = value;
-            OnPropertyChanged(nameof(RememberMe));
+            OnPropertyChanged();
         }
     }
 }

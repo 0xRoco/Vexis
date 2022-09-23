@@ -23,7 +23,7 @@ public class GamesLibraryViewModel : ViewModelBase<GamesLibraryModel>
         set
         {
             Model.Games = value;
-            OnPropertyChanged(nameof(Games));
+            OnPropertyChanged();
         }
     }
 }

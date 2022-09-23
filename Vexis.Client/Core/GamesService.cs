@@ -96,7 +96,8 @@ internal sealed class GamesService : LazySingletonBase<GamesService>
                 if (g.GameLauncher is CustomGameLauncher.None)
                 {
                     var process = await StartProcess(game);
-                    if (process == null) continue;
+                    if (process == null) break;
+                    process.Start();
                     Logger.Debug($"{game} - Launching: {!process.HasExited}");
                     IsGameRunning = true;
                     CurrentGame = game;
@@ -124,7 +125,6 @@ internal sealed class GamesService : LazySingletonBase<GamesService>
             proc.StartInfo.Arguments = game.LaunchArgs?.First();
             proc.EnableRaisingEvents = true;
             proc.Exited += (sender, args) => OnProcessExited(sender, args, game);
-            proc.Start();
             return Task.FromResult<Process?>(proc);
         }
         catch (Exception e)

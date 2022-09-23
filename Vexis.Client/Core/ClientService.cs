@@ -17,8 +17,6 @@ internal sealed class ClientService : LazySingletonBase<ClientService>
     public ClientSettings Settings { get; private set; } = new();
     private static string SettingsFilePath => Path.Combine(Environment.CurrentDirectory, "data/settings.json");
     private bool IsInitialized { get; set; }
-
-    private ApiService ApiService { get; set; } = null!;
     private LogManager Logger { get; } = LogManager.GetLogger();
 
     public async Task InitializeClient(AppClient client)
@@ -33,14 +31,12 @@ internal sealed class ClientService : LazySingletonBase<ClientService>
     private async Task InitializeServices()
     {
         if (!IsInitialized) await Task.CompletedTask;
+        await LoadClientSettings();
         await UiService.Instance.Initialize();
         await AuthService.Instance.Initialize();
-
-        //ApiService = new ApiService("localhost"); //Do i even need this here?
-
+        
         Logger.Info("Services initialized");
-        await LoadClientSettings();
-        if (!string.IsNullOrEmpty(Settings.LoginToken) && !string.IsNullOrEmpty(Settings.Username))
+        if (!string.IsNullOrEmpty(Settings.LoginToken))
         {
             CurrentUser.State = CurrentUserState.PendingLogin;
             await WindowsService.Instance.CreateWindowAsync(nameof(InitializingWindow));
@@ -64,6 +60,7 @@ internal sealed class ClientService : LazySingletonBase<ClientService>
     public async Task<bool> LoadUserData()
     {
         Logger.Info("Loading user data");
+
         var response = await AuthService.Instance.GetUserInfo(CurrentUser.Username, CurrentUser.LoginToken);
         if (response == null!)
         {
@@ -123,8 +120,12 @@ internal sealed class ClientService : LazySingletonBase<ClientService>
         }
 
         Settings = JsonConvert.DeserializeObject<ClientSettings>(settings) ?? throw new InvalidOperationException();
-        CurrentUser.Username = Settings.Username;
-        CurrentUser.LoginToken = Settings.LoginToken;
+        if (!string.IsNullOrEmpty(Settings.LoginToken) && Settings.LoginToken.Contains(':'))
+        {
+            CurrentUser.Username = Settings.LoginToken.Split(':')[0];
+            CurrentUser.LoginToken = Settings.LoginToken.Split(':')[1];
+        }
+
         Logger.Info($"Client settings loaded");
     }
 }
